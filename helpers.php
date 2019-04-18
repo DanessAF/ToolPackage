@@ -27,3 +27,16 @@ if(!function_exists('array_only')) {
         return array_intersect_key($array, array_flip((array) $keys));
     }
 }
+
+if(!function_exists('FileDown')) {
+    function FileDown($file_path) {
+        $down_host = $_SERVER['HTTP_HOST'].'/'; //当前域名
+                
+        //判断如果文件存在,则跳转到下载路径
+        if(file_exists(__DIR__.'/'.$file_path)){
+            header('location:http://'.$down_host.$file_path);
+        }else{
+            header('HTTP/1.1 404 Not Found');
+        }
+    }
+}
